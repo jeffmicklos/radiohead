@@ -1,0 +1,8 @@
+{
+  "name": "radiohead.io",
+  "description": "call yourself a dj",
+  "repository": "https://github.com/jeffmicklos/radiohead",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["radiohead", "april", "burnthewitch"],
+  "image": "heroku/nodejs"
+}
