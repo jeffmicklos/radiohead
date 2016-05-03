@@ -135,3 +135,38 @@ section {
   color: #231f20;
   font-size: 12px;
 }
+
+@media only screen and (min-resolution: 117dpi) and (max-resolution: 119dpi), only screen and (min-resolution: 131dpi) and (max-resolution: 133dpi), only screen and (min-resolution: 145dpi) and (max-resolution: 154dpi), only screen and (min-resolution: 162dpi) and (max-resolution: 164dpi), only screen and (min-resolution: 169dpi) {
+  ul, .container {
+    width: 90%;
+  }
+
+  li {
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    height: auto;
+    margin-bottom: 20px;
+    line-height: 0;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  p {
+    width: 100%;
+    font-size: 12px;
+    line-height: 1.2rem;
+  }
+
+  cite, h2 {
+    font-size: 10px;
+    line-height: 1.2rem;
+  }
+
+  blockquote {
+    font-size: 11px;
+    line-height: 1.2rem;
+  }
+}
