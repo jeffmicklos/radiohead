@@ -170,3 +170,19 @@ section {
     line-height: 1.2rem;
   }
 }
+
+.link--outside {
+  color: inherit;
+  font-style: underline;
+}
+
+.section-wrapper {
+  border-bottom: 1px solid #565656;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+}
+
+audio {
+  display: block;
+  margin: 0 auto 40px;
+}
