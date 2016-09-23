@@ -75,7 +75,7 @@ h1 {
   font-weight: normal;
   font-size: 26px;
   text-transform: uppercase;
-  margin-bottom: 7%;
+  margin-bottom: 5%;
   letter-spacing: 0.15rem;
 }
 
@@ -92,10 +92,6 @@ code {
   font-family: 'Droid Sans Mono', monospace;
   font-size: 66%;
   padding: 0.3%;
-  /*
-  color: #ecede7;
-  background-color: #4c4944;
-  */
   color: #746860;
   background-color: #e0e1e5;
   letter-spacing: 0.05rem;
