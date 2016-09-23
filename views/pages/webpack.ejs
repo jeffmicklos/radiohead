@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webpack CSS</title>
+
+  <!--
+    smile, we're watching :)
+  -->
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,700|Droid+Sans+Mono|Ropa+Sans" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/webpack.css" />
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.1/velocity.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.1/velocity.ui.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+  </head>
+
+<body>
+
+  <div class="container">
+    <ul>
+      <li class="section hidden" data-element="1">
+        <h1>css + webpack</h1>
+        <ul class="list">
+          <li data-element="2">No Sprockets</li>
+          <li data-element="3">No Compass</li>
+          <li data-element="4">We write (S)CSS</li>
+        </ul>
+      </li>
+
+
+      <li class="section hidden"  data-element="5">
+        <h1>Referencing Assets</h1>
+        <p>
+          We no longer use helpers like:<br>
+          <code>inline-image</code><br>
+          <code>asset-data-url</code><br>
+          <code>asset-url</code>
+        </p>
+
+        <p data-element="6" style="margin-bottom: 0;">
+          Rather, we use <code>url</code>. An example:<br>
+
+          <code>
+            background-image: asset-data-url('cc-icon.svg');
+          </code>
+          <em class="text-divider">Becomes:</em>
+          <code>
+            background-image: url('images/cc-icon.svg');
+          </code>
+        </p>
+
+        <p class="note"  data-element="7">
+          Note: <code>static_image_url</code> is still used for assets on the CDN,
+          though now you will have to <code>@import</code> it.
+        </p>
+      </li>
+
+      <li class="section hidden" data-element="8">
+        <h1>Including CSS Part 1</h1>
+        <p>
+          We no longer use Sprockets to require or build files.<br>
+  
+          CSS manifest files are still in use today <code>desktop.scss</code>, <code>mobile.scss</code>
+          but files are included via <code>@import</code> rather than <code>//= require</code><br><br>
+          Those manifest files are <code>require</code>'d into <code>desktop.coffee</code>
+          and <code>mobile.coffee</code>.
+        </p>
+
+        <em class="text-divider" data-element="9">But&hellip;</em>
+
+        <p data-element="10">
+          We don&rsquo;t have to use manifest files&hellip;<br>
+        </p>
+      </li>
+
+      <li class="section hidden" data-element="11">
+        <h1>Including CSS Part 2</h1>
+        <p style="margin-bottom: 3%;">
+          Rather than dumping all of our CSS into a manifest file then requiring that file in a top level JS file (<code>desktop.coffee</code>), we can bring the CSS in where it is needed.<br><br>
+
+          Take, for example, our mobile <code>Gallery</code> component:
+        </p>
+
+        <img src="https://everlane.imgix.net/i/6f97ae60_883f.jpg?dpr=1&q=65" data-element="12">
+        <img src="https://everlane.imgix.net/i/1b2b0690_b6d1.jpg?dpr=1&q=65" data-element="13">
+
+      </li>
+
+      <li class="section hidden"  data-element="14">
+        <h1>Including CSS Part 3</h1>
+        <p style="margin-bottom: 3%;">
+          When we write atomic CSS (as with our <code>Gallery</code> component), we are able to couple these
+          interdependent pieces by simply adding: <code>require('mobile/components/products/gallery.scss')</code> to the top of <code>mobile/components/products/gallery.cjsx</code>
+        </p>
+
+        <em class="note">Note: we would be using <code>import</code> if that file were JSX.</em>
+
+      </li>
+
+    </ul>
+  </div>
+
+  <script>
+
+    $(document).ready(function() {
+
+      INDEX = 1;
+
+      store = new Firebase('https://slidecounter.firebaseio.com/')
+      store.on('value', function(snapshot) {
+        INDEX = snapshot.val()
+        goTo(INDEX)
+      });
+
+      $('body').keyup(function(event) {
+        if(event.keyCode == 32){
+           //goTo(INDEX++);
+          store.transaction(function (currentValue) {
+            return Number(currentValue) + 1
+          });
+        }
+      });
+    
+      goTo = function(index) {
+        var elements = $('*[data-element="'+index+'"]');
+        var previousElements = $('*[data-element]:visible');
+
+        var fadeInNewGuys = function() {
+          console.log('fade in')
+          elements.velocity('transition.fadeIn');
+        }
+
+        if(elements.filter('.section').length && previousElements.length > 0) {
+          console.log('has length')
+          var previousElements = $('*[data-element]:visible');
+          previousElements.velocity('transition.fadeOut', {
+            complete: fadeInNewGuys
+          })
+        } else {
+          fadeInNewGuys()
+        }
+      }
+
+    }); 
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-45175550-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</body>
+</html>
