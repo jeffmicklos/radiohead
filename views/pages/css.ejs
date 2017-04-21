@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSS</title>
+
+  <!--
+    smile, we're watching :)
+  -->
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,700|Droid+Sans+Mono|Ropa+Sans" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/webpack.css" />
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.1/velocity.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.1/velocity.ui.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+
+  <style>
+    img {
+      width: 100%;
+    }
+  </style>
+
+  </head>
+
+<body>
+
+  <div class="container">
+    <ul>
+      <li class="section hidden" data-element="1">
+        <h1>css</h1>
+        <ul class="list" data-element="2">
+          <li>No Sprockets</li>
+          <li>No Compass</li>
+          <li>We write (S)CSS</li>
+        </ul>
+      </li>
+
+
+      <li class="section hidden" data-element="3">
+        <h1>Current Life w/ Decoupled* CSS</h1>
+        <p>
+          <img style="width: 70%;" data-element="4" src="http://res.cloudinary.com/listentoapril/image/upload/v1492800620/Screen_Shot_2017-04-21_at_11.48.17_AM_rpiqxk.png" />
+          <img style="width: 70%;" data-element="5" src="http://res.cloudinary.com/listentoapril/image/upload/v1492800620/Screen_Shot_2017-04-21_at_11.48.25_AM_l3qkrl.png" />
+          <img style="width: 70%;" data-element="6" src="http://res.cloudinary.com/listentoapril/image/upload/v1492800620/Screen_Shot_2017-04-21_at_11.48.46_AM_tk2msy.png" />
+          <img style="width: 70%;" data-element="7" src="http://res.cloudinary.com/listentoapril/image/upload/v1492800620/Screen_Shot_2017-04-21_at_11.49.02_AM_ql9n45.png" />
+          <img style="width: 70%;" data-element="8" src="http://res.cloudinary.com/listentoapril/image/upload/v1492800620/Screen_Shot_2017-04-21_at_11.49.10_AM_zwxflf.png" />
+        </p>
+      </li>
+      <li class="section hidden" data-element="9">
+
+        <p style="margin-bottom: 0;">
+          <h1>Introducing Tachyons</h1>
+
+          <p>
+            <span>Atomic abstractions of CSS concepts.</span> <span data-element="10">Sane defaults.</span>
+            <span data-element="11">Weird naming.</span>
+          </p>
+          <code data-element="12">
+            &lt;MyComponent className="dark-blue f3 pv3" /&gt;
+          </code>
+        </p>
+        <!--
+        <p class="note">
+          Note: <code>static_image_url</code> is still used for assets on the CDN,
+          though now you will have to <code>@import</code> it.
+        </p>-->
+      </li>
+
+      <li class="section hidden" data-element="13">
+        <img style="    width: 89%;
+    position: absolute;
+    top: 0;" src="http://res.cloudinary.com/listentoapril/image/upload/v1492802340/Screen_Shot_2017-04-21_at_12.17.45_PM_hsxzkc.png" />
+      </li>
+
+      <li class="section hidden" data-element="14">
+      <img style="    width: 89%;
+position: absolute;
+top: 0;" src="http://res.cloudinary.com/listentoapril/image/upload/v1492802340/Screen_Shot_2017-04-21_at_12.17.57_PM_oxmoof.png" />
+      </li>
+
+      <li class="section hidden" data-element="15">
+        <img style="    width: 89%;
+    position: absolute;
+    top: 0;" src="http://res.cloudinary.com/listentoapril/image/upload/v1492802340/Screen_Shot_2017-04-21_at_12.17.29_PM_jalicu.png" />
+      </li>
+
+      <li class="section hidden" data-element="16">
+        <img style="    width: 89%;
+    position: absolute;
+    top: 0;" src="http://res.cloudinary.com/listentoapril/image/upload/v1492816478/Screen_Shot_2017-04-21_at_4.14.17_PM_x1ycnd.png" />
+      </li>
+
+      <li class="section hidden" data-element="17">
+        <h1>Is this the future?</h1>
+        <p style="margin-bottom: 3%;" data-element="18">
+          CSS in JS is the future!
+        </p>
+        <ul class="list" data-element="19">
+          <li><code>aphrodite</code></li>
+          <li><code>glamorous</code></li>
+          <li><code>cssobj</code></li>
+        </ul>
+
+        <p data-element="20">
+          But that&rsquo;s cool&hellip;
+        </p>
+      </li>
+
+      <li class="section hidden"  data-element="21">
+        <h1>The Future&hellip;</h1>
+        <p style="margin-bottom: 3%;">
+          By explicitly grouping our CSS and JS, we open up the possibility of living in a much more coupled
+          world. Introducing: Local Scope&hellip;
+        </p>
+
+        <div>
+          <em class="text-divider">In our CSS&hellip;</em>
+          <code>:local(.lineItem) { width: 75%; }</code>
+
+          <em class="text-divider">Meanwhile, in JSX&hellip;</em>
+          <code>import styles from 'componets/line-item.css';</code><br>
+          <code>&#x3C;LineItem className={styles.lineItem}&#x3E;Foo&#x3C;/div&#x3E;</code>
+        </div>
+      </li>
+
+      <li class="section hidden" data-element="22">
+        <p>
+          &hearts;
+        </p>
+      </li>
+
+    </ul>
+  </div>
+
+  <script>
+
+    $(document).ready(function() {
+      UNLOCK = true
+      INDEX = 1;
+
+      store = new Firebase('https://slidecounter.firebaseio.com/')
+      /*
+      store.on('value', function(snapshot) {
+        INDEX = snapshot.val();
+        goTo(INDEX);
+      });
+      */
+
+      $('body').keyup(function(event) {
+        if(!UNLOCK) {
+          return;
+        }
+
+        if(event.keyCode == 32){
+          /*
+          store.transaction(function (currentValue) {
+            return Number(currentValue) + 1;
+          });
+          */
+          INDEX += 1
+          goTo(INDEX)
+        }
+      });
+
+      goTo = function(index) {
+        var elements = $('*[data-element="'+index+'"]');
+        var previousElements = $('*[data-element]:visible');
+
+        if(!elements.length) {
+          store.transaction(function (currentValue) {
+            return 1;
+          });
+        }
+
+        var fadeInNewGuys = function() {
+          elements.velocity('transition.fadeIn');
+        }
+
+        if(elements.filter('.section').length && previousElements.length > 0) {
+          var previousElements = $('*[data-element]:visible');
+          previousElements.velocity('transition.fadeOut', {
+            complete: fadeInNewGuys
+          })
+        } else {
+          fadeInNewGuys()
+        }
+      }
+
+    });
+  </script>
+</body>
+</html>

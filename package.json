@@ -11,13 +11,14 @@
   },
   "dependencies": {
     "ejs": "2.4.1",
-    "express": "4.13.3"
+    "express": "4.13.3",
+    "jsdom": "^9.10.0",
+    "request": "^2.79.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/jeffmicklos/radiohead"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "license": "MIT"
 }
