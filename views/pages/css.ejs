@@ -136,16 +136,14 @@ top: 0;" src="http://res.cloudinary.com/listentoapril/image/upload/v1492802340/S
   <script>
 
     $(document).ready(function() {
-      UNLOCK = true
+      UNLOCK = false
       INDEX = 1;
 
       store = new Firebase('https://slidecounter.firebaseio.com/')
-      /*
       store.on('value', function(snapshot) {
         INDEX = snapshot.val();
         goTo(INDEX);
       });
-      */
 
       $('body').keyup(function(event) {
         if(!UNLOCK) {
@@ -153,13 +151,9 @@ top: 0;" src="http://res.cloudinary.com/listentoapril/image/upload/v1492802340/S
         }
 
         if(event.keyCode == 32){
-          /*
           store.transaction(function (currentValue) {
             return Number(currentValue) + 1;
           });
-          */
-          INDEX += 1
-          goTo(INDEX)
         }
       });
 
