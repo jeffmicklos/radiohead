@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
+var dotenv = require('dotenv')
 var firebase = require('firebase')
 var http = require('http')
+
+dotenv.load()
 
 var config = {
   apiKey: process.env.SOUNDCLOUD_STATS_FIREBASE_API_KEY,
@@ -11,9 +14,9 @@ var config = {
 firebase.initializeApp(config)
 
 function sendToFirebase(songs) {
-  songs.forEach(function(song) {
+  const promises = songs.map(song => {
     var now = (new Date()).getTime()
-    firebase.database().ref('songs/' + song.id + '/stats/' + now).set({
+    return firebase.database().ref('songs/' + song.id + '/stats/' + now).set({
       datetime: now,
       plays: song.playback_count,
       downloads: song.download_count,
@@ -23,7 +26,7 @@ function sendToFirebase(songs) {
     })
   })
 
-  process.exit()
+  Promise.all(promises).then(process.exit)
 }
 
 var options = {
