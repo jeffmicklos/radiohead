@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+var firebase = require('firebase')
+var http = require('http')
+
+var config = {
+  apiKey: process.env.SOUNDCLOUD_STATS_FIREBASE_API_KEY,
+  databaseURL: process.env.SOUNDCLOUD_STATS_FIREBASE_DATABASE_URL,
+}
+
+firebase.initializeApp(config)
+
+function sendToFirebase(songs) {
+  songs.forEach(function(song) {
+    var now = (new Date()).getTime()
+    firebase.database().ref('songs/' + song.id + '/stats/' + now).set({
+      datetime: now,
+      plays: song.playback_count,
+      downloads: song.download_count,
+      favorites: song.favoritings_count,
+      reposts: song.reposts_count,
+      comments: song.comment_count,
+    })
+  })
+
+  process.exit()
+}
+
+var options = {
+  host: 'api.soundcloud.com',
+  path: '/users/62144346/tracks?client_id=' + process.env.SOUNDCLOUD_CLIENT_ID,
+}
+
+http.request(options, function(response) {
+  var bodyChunks = []
+  response.on('data', function(chunk) {
+    bodyChunks.push(chunk);
+  }).on('end', function() {
+    var body = JSON.parse(Buffer.concat(bodyChunks))
+    sendToFirebase(body)
+  })
+}).end()
